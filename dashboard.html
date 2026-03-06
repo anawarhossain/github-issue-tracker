@@ -80,9 +80,9 @@
         <div
           class="flex items-center gap-4 mt-12 mb-4 py-6 px-3 shadow-sm bg-white"
         >
-          <button id="btnAll" class="btn btn-primary">All</button>
-          <button id="btnOpen" class="btn btn-outline btn-primary">Open</button>
-          <button id="btnClosed" class="btn btn-outline btn-primary">
+          <button onclick="toggleEvent('all-btn')" id="btnAll" class="btn btn-primary">All</button>
+          <button onclick="toggleEvent('open-btn')" id="btnOpen" class="btn btn-outline btn-primary">Open</button>
+          <button onclick="toggleEvent('closed-btn')" id="btnClosed" class="btn btn-outline btn-primary">
             Closed
           </button>
         </div>
@@ -120,12 +120,36 @@
       </header>
 
       <main class="">
-        <div id="allItemContainer" class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-3 ">
-            <!-- Dynamicly added all card here -->
+        <div
+          id="allItemContainer"
+          class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-3"
+        >
+          <!-- Dynamicly added all card here -->
         </div>
 
-        
-
+        <!-- Modal section -->
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="details_modal.showModal()">open modal</button> -->
+        <dialog id="details_modal" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <div
+              class="max-w-md mx-auto flex justify-center items-center text-left font-sans"
+              id="details-container"
+            >
+              <!-- Details Card here added daynamically -->
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button
+                  class="mt-4 w-fit px-8 py-3 bg-[#3F31D1] text-white font-semibold rounded-xl hover:bg-[#3F31D195] transition shadow-lg"
+                >
+                  Close
+                </button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </main>
     </section>
 
