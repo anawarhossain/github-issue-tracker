@@ -32,7 +32,9 @@
                 src="./assets/github-logo.png"
                 alt="github-logo"
               />
-              <a class="font-bold text-lg hidden sm:inline-block">GitHub Issues Tracker</a>
+              <a class="font-bold text-lg hidden sm:inline-block"
+                >GitHub Issues Tracker</a
+              >
             </div>
           </div>
           <div class="flex justify-center items-center gap-2">
@@ -54,7 +56,12 @@
                     <path d="m21 21-4.3-4.3"></path>
                   </g>
                 </svg>
-                <input id="searchInput" type="search" required placeholder="Search issues..." />
+                <input
+                  id="searchInput"
+                  type="search"
+                  required
+                  placeholder="Search issues..."
+                />
               </label>
             </div>
             <div class="">
@@ -63,7 +70,54 @@
           </div>
         </div>
       </nav>
+    </section>
 
+    <!-- Main Section -->
+    <section>
+      
+      <header class="container mx-auto">
+        <!-- Button section -->
+        <div
+          class="flex items-center gap-4 mt-12 mb-4 py-6 px-3 shadow-sm bg-white"
+        >
+          <button id="btnAll" class="btn btn-primary">All</button>
+          <button id="btnOpen" class="btn btn-outline btn-primary">Open</button>
+          <button id="btnClosed" class="btn btn-outline btn-primary">
+            Closed
+          </button>
+        </div>
+
+        <!-- Issues count section -->
+        <div
+          class="flex justify-between items-center py-0 px-3 shadow-sm bg-white"
+        >
+          <div class="flex items-center gap-4 py-6 px-3">
+            <img src="./assets/Aperture.png" alt="Aperture" />
+
+            <div>
+              <h3 class="font-bold text-xl">
+                <span id="totalIssues">0</span> Issues
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Track and manage your project issues
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-6 p-4 rounded-md w-fit">
+            <!-- Open -->
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+              <p class="text-gray-700 font-medium">Open</p>
+            </div>
+
+            <!-- Closed -->
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+              <p class="text-gray-700 font-medium">Closed</p>
+            </div>
+          </div>
+        </div>
+      </header>
     </section>
 
     <!-- Dashboard Javascript -->
