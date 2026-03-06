@@ -1,1 +1,4 @@
-console.log(" i am from dashboard js");
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+
+console.log(searchBtn, searchInput)
