@@ -4,10 +4,27 @@ const btnAll = document.getElementById("btnAll");
 const btnOpen = document.getElementById("btnOpen");
 const btnClosed = document.getElementById("btnClosed");
 const totalIssues = document.getElementById("totalIssues");
-
-console.log(searchBtn, searchInput, btnAll, btnOpen, btnClosed, totalIssues);
+const allItemContainer = document.getElementById("allItemContainer");
+const loadingBar = document.getElementById("loadingBar");
 
 let allIssues = [];
+
+console.log(searchBtn, searchInput, btnAll, btnOpen, btnClosed, totalIssues, allItemContainer, loadingBar);
+
+// Loading bar
+function showLoadingBar(isLoading) {
+  if (isLoading) {
+    loadingBar.classList.remove("hidden");
+    allItemContainer.classList.add("hidden");
+  } else {
+    loadingBar.classList.add("hidden");
+    allItemContainer.classList.remove("hidden");
+  }
+};
+
+
+
+
 
 // load all issues data
 // function allItemLoad() {
@@ -15,6 +32,7 @@ let allIssues = [];
 //     .then((res) => res.json())
 //     .then((data) => displayAllItem(data.data));
 // }
+
 
 async function allItemLoad() {
   const res = await fetch(
@@ -74,8 +92,8 @@ const createLebelsElement = (arr) => {
 
 // display all issues data using card style
 function displayAllItem(datas) {
+  showLoadingBar(true);
   totalIssues.innerText = datas.length;
-  const allItemContainer = document.getElementById("allItemContainer");
   allItemContainer.innerHTML = "";
   datas.forEach((item) => {
     const div = document.createElement("div");
@@ -123,7 +141,9 @@ function displayAllItem(datas) {
         `;
     allItemContainer.appendChild(div);
   });
-}
+  
+  showLoadingBar(false);
+};
 
 // details card
 function detailsCard(data) {
@@ -169,5 +189,57 @@ function detailsCard(data) {
   `;
   document.getElementById("details_modal").showModal();
 }
+
+// All button click
+btnAll.addEventListener("click", function () {
+  showLoadingBar(true);
+  btnAll.classList.remove("btn-outline");
+  btnOpen.classList.add("btn-outline");
+  btnClosed.classList.add("btn-outline");
+  displayAllItem(allIssues);
+  showLoadingBar(false);
+});
+
+// Open button click
+btnOpen.addEventListener("click", function () {
+  showLoadingBar(true);
+  btnOpen.classList.remove("btn-outline");
+  btnAll.classList.add("btn-outline");
+  btnClosed.classList.add("btn-outline");
+  const openIssues = allIssues.filter(
+    (item) => item.status.toLowerCase() === "open",
+  );
+  displayAllItem(openIssues);
+  showLoadingBar(false);
+});
+
+// Closed button click
+btnClosed.addEventListener("click", function () {
+  showLoadingBar(true);
+  btnClosed.classList.remove("btn-outline");
+  btnAll.classList.add("btn-outline");
+  btnOpen.classList.add("btn-outline");
+  const closedIssues = allIssues.filter(
+    (item) => item.status.toLowerCase() === "closed",
+  );
+  displayAllItem(closedIssues);
+  showLoadingBar(false);
+});
+
+// Search
+searchBtn.addEventListener("click", function () {
+  showLoadingBar(true);
+  btnClosed.classList.add("btn-outline");
+  btnAll.classList.add("btn-outline");
+  btnOpen.classList.add("btn-outline");
+  const searchValue = searchInput.value.toLowerCase();
+  const searchResult = allIssues.filter((item) =>
+    item.title.toLowerCase().includes(searchValue) ||
+    item.description.toLowerCase().includes(searchValue)
+  );
+  displayAllItem(searchResult);
+  showLoadingBar(false);
+});
+
 
 allItemLoad();
