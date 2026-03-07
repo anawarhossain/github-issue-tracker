@@ -2,6 +2,7 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
 
+// login and redirect to dashboard
 loginBtn.addEventListener("click", (e) => {
   console.log("clicked")
   if (username.value === "admin" && password.value === "admin123") {
